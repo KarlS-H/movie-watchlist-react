@@ -4,6 +4,7 @@ export default function SearchBar() {
   const [query, setQuery] = useState("");
   function handleChange(e) {
     setQuery(e.target.value);
+    console.log(query);
   }
 
   return (
