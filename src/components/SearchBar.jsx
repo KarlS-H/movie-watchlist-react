@@ -7,11 +7,28 @@ export default function SearchBar() {
     console.log(query);
   }
 
+  const [movies, setMovies] = useState([]);
+
+  async function FetchMovies() {
+    let movieSearch = query.trim();
+    const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
+
+    const searchResponse = await fetch(
+      `https://www.omdbapi.com/?s=${movieSearch}&type=movie&apikey=${apiKey}`,
+    );
+
+    const searchData = await searchResponse.json();
+    setMovies(searchData);
+    // console.log(apiKey);
+    // console.log(query);
+    console.log(searchData.Search);
+  }
+
   return (
     <>
       <h1>hello from searchbar</h1>
       <div id="search-bar">
-        <label for="movie-search"></label>
+        <label htmlFor="movie-search"></label>
         <input
           onChange={handleChange}
           type="search"
@@ -19,7 +36,12 @@ export default function SearchBar() {
           placeholder="Search for a movie"
           id="movie-search"
         />
-        <button type="submit" form="movie-search-form" id="search-button">
+        <button
+          type="submit"
+          form="movie-search-form"
+          id="search-button"
+          onClick={FetchMovies}
+        >
           Search
         </button>
         <h1>Movie Searched: {query}</h1>
