@@ -9,7 +9,7 @@ export default function SearchBar() {
 
   const [movies, setMovies] = useState([]);
 
-  async function FetchMovies() {
+  async function fetchMovies() {
     let movieSearch = query.trim();
     const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
 
@@ -21,7 +21,7 @@ export default function SearchBar() {
     setMovies(searchData);
     // console.log(apiKey);
     // console.log(query);
-    console.log(searchData.Search);
+    console.log(searchData.Search ?? []);
   }
 
   return (
@@ -40,7 +40,7 @@ export default function SearchBar() {
           type="submit"
           form="movie-search-form"
           id="search-button"
-          onClick={FetchMovies}
+          onClick={fetchMovies}
         >
           Search
         </button>
