@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function MovieCard({ movie, onAdd }) {
+export default function MovieCard({ movie, onAdd, watchlist }) {
   const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
   const [idData, setIdData] = useState(null);
   useEffect(() => {
@@ -9,10 +9,9 @@ export default function MovieCard({ movie, onAdd }) {
       .then((data) => setIdData(data));
   }, [movie.imdbID]);
 
-  const storedWatchlist = localStorage.getItem("watchlist");
-  const isMovieSaved = storedWatchlist?.some(
-    (saved) => saved.imdbID === movie.imdbID,
-  );
+  const isMovieSaved =
+    Array.isArray(watchlist) &&
+    watchlist.some((saved) => saved.imdbID === movie?.imdbID);
 
   if (!idData) {
     return <p>Loading...</p>;
@@ -37,7 +36,13 @@ export default function MovieCard({ movie, onAdd }) {
             <div className="length-genres-watchlist">
               <div className="runtime">{idData.Runtime || "N/A"}</div>
               <div className="genre">{idData.Genre || "N/A"}</div>
-              <button className="watchlist-btn" data-imdb-id={movie.imdbID}>
+              <button
+                className="watchlist-btn"
+                data-imdb-id={movie.imdbID}
+                onClick={() => {
+                  onAdd(movie);
+                }}
+              >
                 {isMovieSaved ? (
                   <>
                     <i className="fa-solid fa-circle-minus" /> Remove
@@ -60,3 +65,5 @@ export default function MovieCard({ movie, onAdd }) {
     </>
   );
 }
+// moviecard needs to check if this movie is in watch list
+// then update based on the result
