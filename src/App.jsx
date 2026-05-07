@@ -1,8 +1,12 @@
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 
-// const [watchlist, setWatchlist] = useState([]);
-
 export default function App() {
-  return <SearchBar />;
+  const [watchlist, setWatchlist] = useState([]);
+
+  function onAdd(movie) {
+    setWatchlist((prev) => [...prev, movie]);
+  }
+
+  return <SearchBar watchlist={watchlist} onAdd={onAdd} />;
 }

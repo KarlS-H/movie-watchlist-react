@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, onAdd }) {
   const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
   const [idData, setIdData] = useState(null);
   useEffect(() => {
