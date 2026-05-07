@@ -9,13 +9,14 @@ export default function MovieCard({ movie }) {
       .then((data) => setIdData(data));
   }, [movie.imdbID]);
 
-  const storedWatchlist = parseJSON();
+  const storedWatchlist = localStorage.getItem("watchlist");
   const isMovieSaved = storedWatchlist?.some(
     (saved) => saved.imdbID === movie.imdbID,
   );
-  const watchlistButton = isMovieSaved
-    ? `<i className="fa-solid fa-circle-minus"></i> Remove`
-    : `<i className="fa-solid fa-circle-plus"></i> Watchlist`;
+
+  if (!idData) {
+    return <p>Loading...</p>;
+  }
   return (
     <>
       <div className="movie">
@@ -37,7 +38,15 @@ export default function MovieCard({ movie }) {
               <div className="runtime">{idData.Runtime || "N/A"}</div>
               <div className="genre">{idData.Genre || "N/A"}</div>
               <button className="watchlist-btn" data-imdb-id={movie.imdbID}>
-                {watchlistButton}
+                {isMovieSaved ? (
+                  <>
+                    <i className="fa-solid fa-circle-minus" /> Remove
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-circle-plus" /> Watchlist
+                  </>
+                )}
               </button>
             </div>
           </div>

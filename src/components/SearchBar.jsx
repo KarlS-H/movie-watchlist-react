@@ -1,10 +1,11 @@
 import { useState } from "react";
+import MovieCard from "./MovieCard";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   function handleChange(e) {
     setQuery(e.target.value);
-    console.log(query);
+    // console.log(query);
   }
 
   const [movies, setMovies] = useState([]);
@@ -18,11 +19,12 @@ export default function SearchBar() {
     );
 
     const searchData = await searchResponse.json();
-    setMovies(searchData);
-    // console.log(apiKey);
-    // console.log(query);
-    console.log(searchData.Search ?? []);
+    setMovies(searchData.Search ?? []);
+    // console.log(movies);
+    // console.log(searchData.Search ?? []);
   }
+
+  console.log(movies);
 
   return (
     <>
@@ -45,6 +47,11 @@ export default function SearchBar() {
           Search
         </button>
         <h1>Movie Searched: {query}</h1>
+      </div>
+      <div>
+        {movies.map((movie) => (
+          <MovieCard key={movie.imdbID} movie={movie} />
+        ))}
       </div>
     </>
   );
