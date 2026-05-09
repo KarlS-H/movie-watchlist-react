@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MovieCard from "./MovieCard";
+import { Link } from "react-router-dom";
 
 export default function SearchBar({ watchlist, onAdd }) {
   const [query, setQuery] = useState("");
@@ -23,7 +24,12 @@ export default function SearchBar({ watchlist, onAdd }) {
 
   return (
     <>
-      <h1>hello from searchbar</h1>
+      <header>
+        <div id="header-options">
+          <h2>Find your film</h2>
+          <Link to="/WatchlistPage">Go to your watch list</Link>
+        </div>
+      </header>
       <div id="search-bar">
         <label htmlFor="movie-search"></label>
         <input
