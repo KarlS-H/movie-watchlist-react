@@ -27,7 +27,7 @@ export default function SearchBar({ watchlist, onAdd }) {
       <header>
         <div id="header-options">
           <h2>Find your film</h2>
-          <Link to="/WatchlistPage">Go to your watch list</Link>
+          <Link to="/watchlist">Go to your watch list</Link>
         </div>
       </header>
       <div id="search-bar">

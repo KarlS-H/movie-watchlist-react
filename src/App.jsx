@@ -37,7 +37,10 @@ export default function App() {
         path="/"
         element={<SearchPage watchlist={watchlist} onAdd={onAdd} />}
       />
-      <Route path="/watchlist" element={<WatchlistPage />} />
+      <Route
+        path="/watchlist"
+        element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
+      />
     </Routes>
   );
 }
