@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function SearchBar({ watchlist, onAdd }) {
   const [query, setQuery] = useState("");
-  function handleChange(e) {
-    setQuery(e.target.value);
-  }
+
+  let handleChange = (e) => setQuery(e.target.value);
 
   const [movies, setMovies] = useState([]);
 

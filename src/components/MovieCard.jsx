@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function MovieCard({ movie, onAdd, watchlist }) {
   const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
   const [idData, setIdData] = useState(null);
+
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
       .then((res) => res.json())

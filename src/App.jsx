@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Link, Outlet } from "react-router-dom";
 
 import SearchBar from "./components/SearchBar";
@@ -19,17 +19,21 @@ export default function App() {
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
   }, [watchlist]);
 
-  function onAdd(movie) {
-    setWatchlist((prev) => {
-      const alreadySaved = prev.some((m) => m.imdbID === movie.imdbID);
-      if (alreadySaved) {
-        return prev.filter((m) => {
-          return m.imdbID !== movie.imdbID;
-        });
-      }
-      return [...prev, movie];
-    });
-  }
+  const onAdd = useCallback(
+    (movie) => {
+      setWatchlist((prev) => {
+        const alreadySaved = prev.some((m) => m.imdbID === movie.imdbID);
+        if (alreadySaved) {
+          return prev.filter((m) => {
+            return m.imdbID !== movie.imdbID;
+          });
+        }
+        return [...prev, movie];
+      });
+    },
+    [setWatchlist],
+  );
+  // function onAdd(movie) {}
 
   return (
     <Routes>
