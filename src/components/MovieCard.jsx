@@ -21,50 +21,56 @@ export default function MovieCard({ movie, onAdd, watchlist }) {
   }
   return (
     <>
-      <div className="movie">
-        <div className="movie-image">
-          <img className="image " src={movie.Poster} />
-        </div>
+      <article>
+        <div className="movie">
+          <figure className="movie-image">
+            <img
+              className="image"
+              src={movie.Poster}
+              alt={`Movie poster for ${movie.Title}`}
+            />
+          </figure>
 
-        <div className="movie-bio">
-          <div className="title-rating">
-            <p className="movie-title">{movie.Title}</p>
-            <i className="fa-solid fa-star"></i>
-            <p className="movie-rating">
-              {idData.Ratings?.[0]?.Value || "N/A"}
-            </p>
-          </div>
+          <div className="movie-bio">
+            <header>
+              <h2 className="movie-title">{movie.Title}</h2>
+              <i className="fa-solid fa-star" aria-hidden="true"></i>
+              <p className="movie-rating">
+                {idData.Ratings?.[0]?.Value || "N/A"}
+              </p>
+            </header>
 
-          <div className="movie-details">
-            <div className="length-genres-watchlist">
-              <div className="runtime">{idData.Runtime || "N/A"}</div>
-              <div className="genre">{idData.Genre || "N/A"}</div>
-              <button
-                className="watchlist-btn"
-                data-imdb-id={movie.imdbID}
-                onClick={() => {
-                  onAdd(movie);
-                }}
-              >
-                {isMovieSaved ? (
-                  <>
-                    <i className="fa-solid fa-circle-minus" /> Remove
-                  </>
-                ) : (
-                  <>
-                    <i className="fa-solid fa-circle-plus" /> Watchlist
-                  </>
-                )}
-              </button>
+            <div className="movie-details">
+              <div className="length-genres-watchlist">
+                <div className="runtime">{idData.Runtime || "N/A"}</div>
+                <div className="genre">{idData.Genre || "N/A"}</div>
+                <button
+                  className="watchlist-btn"
+                  data-imdb-id={movie.imdbID}
+                  onClick={() => {
+                    onAdd(movie);
+                  }}
+                >
+                  {isMovieSaved ? (
+                    <>
+                      <i className="fa-solid fa-circle-minus" /> Remove
+                    </>
+                  ) : (
+                    <>
+                      <i className="fa-solid fa-circle-plus" /> Watchlist
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div className="film-description">
+              <p>{idData.Plot || "No description available"}</p>
             </div>
           </div>
-
-          <div className="film-description">
-            <p>{idData.Plot || "No description available"}</p>
-          </div>
         </div>
-      </div>
-      <hr className="bottom-line" />
+        <hr className="bottom-line" />
+      </article>
     </>
   );
 }

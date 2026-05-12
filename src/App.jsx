@@ -36,15 +36,17 @@ export default function App() {
   // function onAdd(movie) {}
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<SearchPage watchlist={watchlist} onAdd={onAdd} />}
-      />
-      <Route
-        path="/watchlist"
-        element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
-      />
-    </Routes>
+    <div className="app">
+      <Routes>
+        <Route
+          path="/"
+          element={<SearchPage watchlist={watchlist} onAdd={onAdd} />}
+        />
+        <Route
+          path="/watchlist"
+          element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
+        />
+      </Routes>
+    </div>
   );
 }
