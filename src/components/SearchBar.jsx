@@ -12,23 +12,28 @@ export default function SearchBar({ watchlist, onAdd }) {
   const [movies, setMovies] = useState([]);
 
   async function fetchMovies() {
+    setError("");
     setLoading(true);
     let movieSearch = query.trim();
     const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
+    try {
+      const searchResponse = await fetch(
+        `https://www.omdbapi.com/?s=${movieSearch}&type=movie&apikey=${apiKey}`,
+      );
+      const searchData = await searchResponse.json();
 
-    const searchResponse = await fetch(
-      `https://www.omdbapi.com/?s=${movieSearch}&type=movie&apikey=${apiKey}`,
-    );
-
-    const searchData = await searchResponse.json();
-    // console.log(searchData.Response);
-    setLoading(false);
-    if (searchData.Response !== "True") {
-      setError(searchData.Error);
-    } else {
-      setError("");
-      setMovies(searchData.Search ?? []);
+      if (searchData.Response !== "True") {
+        setError(searchData.Error);
+      } else {
+        setError("");
+        setMovies(searchData.Search ?? []);
+      }
+    } catch {
+      setError("Something went wrong");
+    } finally {
+      setLoading(false);
     }
+    // console.log(searchData.Response);
   }
 
   return (
@@ -36,12 +41,22 @@ export default function SearchBar({ watchlist, onAdd }) {
       <header>
         <div id="header-options">
           <h2>Find your film</h2>
-          <Link to="/watchlist">Go to your watch list</Link>
+          <Link to="/watchlist">
+            Go to your watch list ({watchlist.length})
+          </Link>
         </div>
       </header>
       <div id="search-bar">
         <label htmlFor="movie-search"></label>
         <input
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              {
+                fetchMovies();
+              }
+              // console.log("enter is pressed");
+            }
+          }}
           onChange={handleChange}
           type="search"
           name="movie-search"
@@ -49,10 +64,11 @@ export default function SearchBar({ watchlist, onAdd }) {
           id="movie-search"
         />
         <button
-          type="submit"
+          type="button"
           form="movie-search-form"
           id="search-button"
           onClick={fetchMovies}
+          disabled={loading}
         >
           Search
         </button>
@@ -77,16 +93,3 @@ export default function SearchBar({ watchlist, onAdd }) {
     </>
   );
 }
-
-// {watchlist.length === 0 ? (
-//           <h2>No movies in your watchlist</h2>
-//         ) : (
-//           watchlist.map((movie) => (
-//             <MovieCard
-//               key={movie.imdbID}
-//               movie={movie}
-//               watchlist={watchlist}
-//               onAdd={onAdd}
-//             />
-//           ))
-//         )}
