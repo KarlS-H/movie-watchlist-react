@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 
 export default function SearchBar({ watchlist, onAdd }) {
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   let handleChange = (e) => setQuery(e.target.value);
 
   const [movies, setMovies] = useState([]);
 
   async function fetchMovies() {
+    setLoading(true);
     let movieSearch = query.trim();
     const apiKey = import.meta.env.VITE_PUBLIC_OMDB_KEY;
 
@@ -18,7 +21,14 @@ export default function SearchBar({ watchlist, onAdd }) {
     );
 
     const searchData = await searchResponse.json();
-    setMovies(searchData.Search ?? []);
+    // console.log(searchData.Response);
+    setLoading(false);
+    if (searchData.Response !== "True") {
+      setError(searchData.Error);
+    } else {
+      setError("");
+      setMovies(searchData.Search ?? []);
+    }
   }
 
   return (
@@ -46,18 +56,37 @@ export default function SearchBar({ watchlist, onAdd }) {
         >
           Search
         </button>
-        <h1>Movie Searched: {query}</h1>
+        {/* <h1>Movie Searched: {query}</h1> */}
       </div>
+
       <div>
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.imdbID}
-            movie={movie}
-            watchlist={watchlist}
-            onAdd={onAdd}
-          />
-        ))}
+        {error !== "" ? <h2>{error}</h2> : null}
+        {loading === true ? (
+          <h2>Fetching results</h2>
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie.imdbID}
+              movie={movie}
+              watchlist={watchlist}
+              onAdd={onAdd}
+            />
+          ))
+        )}
       </div>
     </>
   );
 }
+
+// {watchlist.length === 0 ? (
+//           <h2>No movies in your watchlist</h2>
+//         ) : (
+//           watchlist.map((movie) => (
+//             <MovieCard
+//               key={movie.imdbID}
+//               movie={movie}
+//               watchlist={watchlist}
+//               onAdd={onAdd}
+//             />
+//           ))
+//         )}

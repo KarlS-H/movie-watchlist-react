@@ -5,6 +5,8 @@ export default function MovieCard({ movie, onAdd, watchlist }) {
   const [idData, setIdData] = useState(null);
 
   useEffect(() => {
+    // setLoading(true);
+    // console.log(loading);
     fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
       .then((res) => res.json())
       .then((data) => setIdData(data));
@@ -66,5 +68,3 @@ export default function MovieCard({ movie, onAdd, watchlist }) {
     </>
   );
 }
-// moviecard needs to check if this movie is in watch list
-// then update based on the result
