@@ -33,7 +33,7 @@ export default function MovieCard({ movie, onAdd, watchlist }) {
 
           <div className="movie-bio">
             <header>
-              <h2 className="movie-title">{movie.Title}</h2>
+              <h3 className="movie-title">{movie.Title}</h3>
               <i className="fa-solid fa-star" aria-hidden="true"></i>
               <p className="movie-rating">
                 {idData.Ratings?.[0]?.Value || "N/A"}
@@ -42,8 +42,8 @@ export default function MovieCard({ movie, onAdd, watchlist }) {
 
             <div className="movie-details">
               <div className="length-genres-watchlist">
-                <div className="runtime">{idData.Runtime || "N/A"}</div>
-                <div className="genre">{idData.Genre || "N/A"}</div>
+                <span className="runtime">{idData.Runtime || "N/A"}</span>
+                <span className="genre">{idData.Genre || "N/A"}</span>
                 <button
                   className="watchlist-btn"
                   data-imdb-id={movie.imdbID}

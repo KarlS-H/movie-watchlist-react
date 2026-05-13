@@ -3,18 +3,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #121212;
-}
-.app {
-  width: min(100%, 720px);
-
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-body {
   min-height: 100vh;
-  margin: 0 auto;
-  align-items: center;
-  font-family: "Inter", sans-serif !important;
+  font-family: "Inter", sans-serif;
 }
 
 input,
@@ -23,33 +13,33 @@ button {
   padding: 0;
   font-family: "Inter", sans-serif !important;
 }
+
+.app {
+  width: min(100%, 720px);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+}
+
 a:link,
 a:visited,
 a:active {
   color: whitesmoke;
   text-decoration: none;
 }
-button,
-input {
-  margin: 0;
+a:hover {
+  color: crimson;
 }
 
 #film-icon {
   color: white;
 }
 
-a:hover {
-  color: crimson;
-}
-
-h2 {
-  color: whitesmoke;
-}
 header {
   display: flex;
   background-image: url("/img/human_condition_part_1.jpeg");
   background-size: cover;
-  margin: auto;
+  background-position: center;
   align-items: center;
   justify-content: center;
   max-height: 208px;
@@ -60,26 +50,28 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
   padding-inline: 1rem;
 }
-main {
-  display: block;
+
+#header-options h2 {
+  color: whitesmoke;
+  margin: 0;
+  font-size: clamp(1rem, 4vw, 1.5rem);
 }
+/* searchbar  */
 #search-bar {
   display: flex;
   width: 100%;
-  margin-top: 0;
+  box-sizing: border-box;
+  /* margin-top: 0; */
   padding-bottom: 10px;
 }
 #movie-search {
   flex: 1;
-  margin: 0%;
+  min-width: 0;
+  /* margin: 0; */
   border: 0;
-  padding-left: 13px;
-  padding-right: 13px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding: 9px 13px;
   color: gray;
   background-color: #2e2e2f;
   border-radius: 2px 0px 0px 2px;
@@ -87,23 +79,19 @@ main {
 #search-button {
   flex-shrink: 0;
   border: 0;
-  padding-left: 17px;
-  padding-right: 11px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding: 9px 17px;
   background-color: #4b4b4b;
   color: #ffffff;
   border-radius: 0px 2px 2px 0px;
+  cursor: pointer;
+}
+#search-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.fa-film {
-  font-size: 100px;
-}
-.fa-star {
-  color: #fec654;
-  width: 15px;
-  height: 15px;
-  margin-right: 6px;
+input:focus {
+  outline: 2px solid #ffffff;
 }
 
 #movie-list {
@@ -113,9 +101,9 @@ main {
   align-items: center;
   /* border: #FFFFFF solid 2px; */
 }
-#movie-feed {
+/* #movie-feed {
   color: #4b4b4b;
-}
+} */
 
 .movie {
   color: #ffffff;
@@ -123,7 +111,7 @@ main {
   gap: 1rem;
   padding: 1.5rem 0;
   width: 100%;
-  opacity: 0.67;
+  opacity: 0.75;
   transition: 0.3s ease;
 }
 .movie:hover {
@@ -132,7 +120,7 @@ main {
   background: rgba(255, 255, 255, 0.05);
 }
 .movie-image {
-  width: 100px;
+  width: 9rem;
   flex-shrink: 0;
 }
 .movie-image img {
@@ -146,90 +134,92 @@ main {
   flex-direction: column;
   gap: 0.75rem;
   flex: 1;
+  min-width: 0;
 }
 
 .title-rating {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
 
 .movie-title {
-  margin-right: 6px;
+  margin-right: 0.375rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 18px;
+  min-width: 0;
+  flex: 1;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  /* font-size: 18px; */
 }
 
 .movie-rating {
-  font-size: 12px;
-  padding-top: 6px;
+  font-size: 1rem;
+  padding-top: 0.2rem;
+}
+
+.fa-film {
+  font-size: 100px;
+}
+.fa-star {
+  color: #fec654;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 6px;
 }
 
 .length-genres-watchlist {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
-}
-
-.film-description {
-  line-height: 20px;
-  font-size: 14px;
+  gap: 0.5rem;
+  font-size: 1rem;
   color: #a5a5a5;
 }
 
-#film-search-error {
+.film-description {
+  line-height: 1.5;
+  font-size: 0.875rem;
+  color: #a5a5a5;
+}
+
+/* #film-search-error {
   color: #ffffff;
-}
-
-#no-film-search {
-  display: flex;
-  justify-content: center;
-  /* align-content: center; */
-  align-items: center;
-  text-align: center;
-  width: 100%;
-}
-
-#no-film-search-child {
-  color: white;
-  flex: auto;
-  border-radius: 25px;
-  /* border: 2px outset white; */
-  padding: 10px;
-}
-
+} */
+/* divider */
 hr {
   display: block;
-  height: 1.5px;
+  height: 0.1rem;
   width: 100%;
-  border-width: 0;
+  border: 0;
   color: gray;
   background-color: #2c2c2c;
+  margin: 0;
 }
 
 .watchlist-btn {
   background: none;
   border: none;
   color: #ffffff;
+  padding: 0;
+  font-size: 0.8rem;
 }
-
-input:focus {
-  outline: 2px solid #ffffff;
-  /* border: 2px solid white;   */
+.watchlist-btn:hover {
+  color: crimson;
+  transition: color 0.2s ease;
 }
+/* error */
 
-ul {
+/* ul {
   text-align: center;
   list-style-type: none;
 }
 
 li {
   margin: 0;
-  /* text-align: center; */
-}
+  /* text-align: center;} */
 
 #film-search-error {
   display: flex;
@@ -237,10 +227,35 @@ li {
   text-align: center;
 }
 
-.errors {
-  margin: 0;
-}
-
+.errors,
 #no-movies {
+  margin: 0;
   text-align: center;
+  text-align: center;
+}
+/* media for dif display sizes */
+@media (max-width: 480px) {
+  header,
+  #header-options {
+    min-height: 120px;
+    max-height: 120px;
+  }
+
+  .movie {
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+
+  .movie-image {
+    width: 4.375px;
+  }
+
+  .length-genres-watchlist {
+    gap: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .film-description {
+    font-size: 0.813rem;
+  }
 }

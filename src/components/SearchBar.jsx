@@ -41,9 +41,7 @@ export default function SearchBar({ watchlist, onAdd }) {
       <header>
         <div id="header-options">
           <h2>Find your film</h2>
-          <Link to="/watchlist">
-            Go to your watch list ({watchlist.length})
-          </Link>
+          <Link to="/watchlist">Watchlist ({watchlist.length})</Link>
         </div>
       </header>
       <div id="search-bar">
@@ -51,9 +49,8 @@ export default function SearchBar({ watchlist, onAdd }) {
         <input
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              {
-                fetchMovies();
-              }
+              fetchMovies();
+
               // console.log("enter is pressed");
             }
           }}
