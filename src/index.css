@@ -128,6 +128,8 @@ main {
 }
 .movie:hover {
   opacity: 1;
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.05);
 }
 .movie-image {
   width: 100px;
