@@ -1,16 +1,35 @@
-# React + Vite
+An application that lets you search movies and add them to a watchlist on your localStorage.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React app uses Vite, React Router, and OMDB API, it is deployed on Vercel. 
 
-Currently, two official plugins are available:
+Tech Stack: 
+	Frontend:
+		React 18, React Router v6, Vite, CSS
+	Data & Storage:
+			OMDB API (https://www.omdbapi.com)
+		localStorage
+	Tooling & Deployment:
+		Git + Github
+		Vercel
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+How to run locally:
+	Clone the repo:
+		" cd movie-watchlist-react "
+	Install dependencies:
+		" npm install "
+	Add your own API key from OMDB (https://www.omdbapi.com):
+		Create .env file in root of project.
+			Place this in .env file - VITE_PUBLIC_OMDB_KEY=your_api_key_here
+		Create a new API key (omdbapi.com/apikey.aspx)
+		Place key in .env file
+	Start server:
+		" npm run dev "
+	Open browser: 
+		http://localhost:5173
+		
+What I learned from this project so far: 
+	How to convert a code base from vanilla JS to React
+	Lifting state up, and useEffect in React
+	Error handelling for bad requests
+	Responsive design
+	
