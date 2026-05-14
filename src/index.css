@@ -74,7 +74,7 @@ header {
   padding: 9px 13px;
   color: gray;
   background-color: #2e2e2f;
-  border-radius: 2px 0px 0px 2px;
+  border-radius: 0.125rem 0 0 0.125rem;
 }
 #search-button {
   flex-shrink: 0;
@@ -82,7 +82,7 @@ header {
   padding: 9px 17px;
   background-color: #4b4b4b;
   color: #ffffff;
-  border-radius: 0px 2px 2px 0px;
+  border-radius: 0.125rem 0 0 0.125rem;
   cursor: pointer;
 }
 #search-button:disabled {
@@ -212,15 +212,6 @@ hr {
 }
 /* error */
 
-/* ul {
-  text-align: center;
-  list-style-type: none;
-}
-
-li {
-  margin: 0;
-  /* text-align: center;} */
-
 #film-search-error {
   display: flex;
   justify-content: center;
@@ -247,7 +238,7 @@ li {
   }
 
   .movie-image {
-    width: 4.375px;
+    width: 4.375rem;
   }
 
   .length-genres-watchlist {
