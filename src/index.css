@@ -37,7 +37,7 @@ a:hover {
 
 header {
   display: flex;
-  background-image: url("/img/human_condition_part_1.jpeg");
+  background-image: url("/src/assets/human_condition_part_1.jpeg");
   background-size: cover;
   background-position: center;
   align-items: center;
@@ -128,6 +128,10 @@ input:focus {
   aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
+}
+
+.movie-bio header {
+  background-image: none;
 }
 .movie-bio {
   display: flex;
