@@ -46,6 +46,7 @@ export default function App() {
           path="/watchlist"
           element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
         />
+        <Route path="/signin" />
       </Routes>
     </div>
   );
