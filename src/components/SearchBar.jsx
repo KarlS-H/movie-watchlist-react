@@ -41,8 +41,8 @@ export default function SearchBar({ watchlist, onAdd }) {
       <header>
         <div id="header-options">
           <h2>Find your film</h2>
-          <button onClick={() => openAuth("login")}>Login</button>
-          <button onClick={() => openAuth("register")}>Register</button>
+          <button>Login</button>
+          <button>Register</button>
           <Link to="/watchlist">Watchlist ({watchlist.length})</Link>
         </div>
       </header>

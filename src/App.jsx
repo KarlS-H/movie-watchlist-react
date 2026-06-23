@@ -14,7 +14,6 @@ export default function App() {
       return [];
     }
   });
-  // const [authModal, setAuthModal] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
@@ -41,23 +40,11 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <SearchPage
-              watchlist={watchlist}
-              onAdd={onAdd}
-              openAuth={setAuthModal}
-            />
-          }
+          element={<SearchPage watchlist={watchlist} onAdd={onAdd} />}
         />
         <Route
           path="/watchlist"
-          element={
-            <WatchlistPage
-              watchlist={watchlist}
-              onAdd={onAdd}
-              openAuth={setAuthModal}
-            />
-          }
+          element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
         />
         <Route path="/signin" />
       </Routes>
