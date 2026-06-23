@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, Link, Outlet } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SearchPage from "./pages/SearchPage";
 import WatchlistPage from "./pages/WatchlistPage";
-
+import AuthPage from "./pages/AuthPage";
 export default function App() {
   const [watchlist, setWatchlist] = useState(() => {
     try {
@@ -46,7 +46,7 @@ export default function App() {
           path="/watchlist"
           element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
         />
-        <Route path="/signin" />
+        <Route path="/signin" element={<AuthPage />} />
       </Routes>
     </div>
   );
