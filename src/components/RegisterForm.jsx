@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function Register() {
+export default function Register() {
   const {
     register,
     handleSubmit,

@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import SearchPage from "./pages/SearchPage";
 import WatchlistPage from "./pages/WatchlistPage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 export default function App() {
   const [watchlist, setWatchlist] = useState(() => {
     try {
@@ -46,7 +47,8 @@ export default function App() {
           path="/watchlist"
           element={<WatchlistPage watchlist={watchlist} onAdd={onAdd} />}
         />
-        <Route path="/signin" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </div>
   );

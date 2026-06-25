@@ -41,8 +41,8 @@ export default function SearchBar({ watchlist, onAdd }) {
       <header>
         <div id="header-options">
           <h2>Find your film</h2>
-          <button>Login</button>
-          <button>Register</button>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
           <Link to="/watchlist">Watchlist ({watchlist.length})</Link>
         </div>
       </header>
