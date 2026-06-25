@@ -4,7 +4,7 @@ import { Route, Routes, Link, Outlet } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SearchPage from "./pages/SearchPage";
 import WatchlistPage from "./pages/WatchlistPage";
-import AuthPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
 export default function App() {
   const [watchlist, setWatchlist] = useState(() => {
     try {
