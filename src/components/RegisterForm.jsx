@@ -12,35 +12,30 @@ export default function Register() {
   const url = "https://auth-api-4b1q.onrender.com/auth/register";
 
   const onSubmit = async (data) => {
-    const existingUser = await fetch(url, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      }),
-    });
-    if (!existingUser.ok) {
-      throw new Error(`Response Status: ${existingUser.status}`);
-    } else {
-      navigate("/login");
+    try {
+      const existingUser = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: data.username,
+          email: data.email,
+          password: data.password,
+        }),
+      });
+      if (!existingUser.ok) {
+        const errorData = await existingUser.json().catch(() => ({}));
+        console.error("Backend Validation Eroor:", errorData);
+
+        throw new Error(`Response Status: ${existingUser.status}`);
+      } else {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error(err);
     }
-    // JSON.parse(localStorage.getItem(data.email));
-    // if (existingUser) {
-    //   console.log("Email is already registered");
-    // } else {
-    //   const userData = {
-    //     username: data.username,
-    //     email: data.email,
-    //     password: data.password,
-    //   };
-    //   localStorage.setItem(data.email, JSON.stringify(userData));
-    //   console.log(data.name + " has been successfully registered");
-    // }
   };
 
   return (
