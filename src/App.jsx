@@ -6,6 +6,7 @@ import SearchPage from "./pages/SearchPage";
 import WatchlistPage from "./pages/WatchlistPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 export default function App() {
   const [watchlist, setWatchlist] = useState(() => {
     try {
@@ -49,6 +50,7 @@ export default function App() {
         />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );
